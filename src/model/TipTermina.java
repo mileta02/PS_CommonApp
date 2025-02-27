@@ -71,12 +71,12 @@ public class TipTermina implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "cenaSata,nazivTipa";
+        return "(cenaSata,nazivTipa)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return cenaSata+",'"+nazivTipa+"'";
+        return "("+cenaSata+",'"+nazivTipa+"')";
 
     }
 

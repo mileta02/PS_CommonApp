@@ -74,12 +74,12 @@ public class Licenca implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "zvanjeInstruktora,nazivLicence";
+        return "(zvanjeInstruktora,nazivLicence)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return "'"+zvanjeInstruktora+"','"+nazivLicence+"'";
+        return "('"+zvanjeInstruktora+"','"+nazivLicence+"')";
     }
 
     @Override

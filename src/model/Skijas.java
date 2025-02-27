@@ -81,12 +81,12 @@ public class Skijas implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "ime,prezime,brojTelefona,nivoSkijanja";
+        return "(ime,prezime,brojTelefona,nivoSkijanja)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return "'"+ime+"','"+prezime+"','"+brojTelefona+"',"+nivoSkijanja.getIdNivoSkijanja();
+        return "('"+ime+"','"+prezime+"','"+brojTelefona+"',"+nivoSkijanja.getIdNivoSkijanja()+")";
     }
 
     @Override

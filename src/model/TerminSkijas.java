@@ -62,12 +62,12 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "termin,skijas,datumPrijave";
+        return "(termin,skijas,datumPrijave)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return termin.getIdTermin()+","+skijas.getIdSkijas()+",'"+datumPrijave+"'";
+        return "("+termin.getIdTermin()+","+skijas.getIdSkijas()+",'"+datumPrijave+"')";
 
         
     }

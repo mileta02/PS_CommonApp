@@ -65,12 +65,12 @@ public class InstruktorLicenca implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "instruktor,licenca,datumSticanja";
+        return "(instruktor,licenca,datumSticanja)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return instruktor.getIdInstruktor()+","+licenca.getIdLicenca()+",'"+datumSticanja+"'";
+        return "("+instruktor.getIdInstruktor()+","+licenca.getIdLicenca()+",'"+datumSticanja+"')";
     }
 
     @Override

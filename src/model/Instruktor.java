@@ -33,6 +33,12 @@ public class Instruktor implements OpstiDomenskiObjekat {
         this.sifra = sifra;
     }
 
+    public Instruktor(String korisnickoIme, String sifra) {
+        this.korisnickoIme=korisnickoIme;
+        this.sifra=sifra;
+    }
+    
+
     public int getIdInstruktor() {
         return idInstruktor;
     }
@@ -111,13 +117,13 @@ public class Instruktor implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "ime,prezime,kontakt,korisnickoIme,sifra";
+        return "(ime,prezime,kontakt,korisnickoIme,sifra)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
             
-        return "'"+ime+"','"+prezime+"','"+kontakt+"','"+"','"+korisnickoIme+"','"+sifra+"'";
+        return "('"+ime+"','"+prezime+"','"+kontakt+"','"+korisnickoIme+"','"+sifra+"')";
     }
 
     @Override

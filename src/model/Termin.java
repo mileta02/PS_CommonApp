@@ -123,12 +123,12 @@ public class Termin implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "ukupanIznos,vremeOd,vremeDo,brojSati,maxBrojSkijasa,datum,tip,instruktor";
+        return "(ukupanIznos,vremeOd,vremeDo,brojSati,maxBrojSkijasa,datum,tip,instruktor)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-        return ukupanIznos+",'"+vremeOd+"','"+vremeDo+"',"+brojSati+","+maxBrojSkijasa+",'"+datum+"',"+tip.getIdTip()+","+instruktor.getIdInstruktor();
+        return "("+ukupanIznos+",'"+vremeOd+"','"+vremeDo+"',"+brojSati+","+maxBrojSkijasa+",'"+datum+"',"+tip.getIdTip()+","+instruktor.getIdInstruktor()+")";
 
     }
 

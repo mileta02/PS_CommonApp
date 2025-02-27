@@ -61,12 +61,12 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "nazivNivoa";
+        return "(nazivNivoa)";
     }
 
     @Override
     public String vratiVrednostZaUbacivanje() {
-                return "'"+nazivNivoa+"'";
+                return "('"+nazivNivoa+"')";
     }
 
     @Override
