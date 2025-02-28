@@ -9,5 +9,5 @@ package communication;
  * @author milan
  */
 public enum Operation {
-    LOGIN,REGISTER
+    LOGIN,REGISTER,EDIT_INSTRUKTOR,DELETE_INSTRUKTOR,
 }

@@ -1,29 +1,4 @@
-build.xml
-manifest.mf
-
-# Ignoriši kompajlirane Java klase
-*.class
-
-# Ignoriši NetBeans privatne foldere
-nbproject/private/
-
-# Ignoriši build i dist foldere
 build/
-dist/
-
-# Ignoriši log fajlove
-*.log
-
-# Ignoriši generisane fajlove
-*.bak
-*.swp
-
-# Ignoriši sve binarne fajlove
-*.o
-*.so
-*.exe
-*.dll
-
-# Ignoriši sve privremene i sistemske fajlove
-.DS_Store
-Thumbs.db
+nbproject/private/
+*.class
+*.jar
