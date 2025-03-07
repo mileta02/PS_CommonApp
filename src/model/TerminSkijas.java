@@ -87,5 +87,10 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "termin="+termin.getIdTermin()+",skijas="+skijas.getIdSkijas()+",datumPrijave='"+datumPrijave+"'";
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

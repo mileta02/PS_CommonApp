@@ -87,6 +87,11 @@ public class InstruktorLicenca implements OpstiDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "instruktor="+instruktor.getIdInstruktor()+",licenca="+licenca.getIdLicenca()+",datumSticanja='"+datumSticanja+"'";
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

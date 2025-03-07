@@ -140,6 +140,11 @@ public class Instruktor implements OpstiDomenskiObjekat {
     public String vratiVrednostZaIzmenu() {
         return "ime='"+ime+"',prezime='"+prezime+"',kontakt='"+kontakt+"',korisnickoIme='"+korisnickoIme+"',sifra='"+sifra+"'";
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return "ime like '"+ime+"%' AND prezime like '"+prezime+"%';";
+    }
     
     
     

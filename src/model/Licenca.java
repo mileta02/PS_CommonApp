@@ -28,7 +28,7 @@ public class Licenca implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {        
-        return nazivLicence;      
+        return nazivLicence +"- "+zvanjeInstruktora;      
     }
 
     public int getIdLicenca() {
@@ -54,6 +54,8 @@ public class Licenca implements OpstiDomenskiObjekat{
     public void setNazivLicence(String nazivLicence) {
         this.nazivLicence = nazivLicence;
     }
+    
+    
 
     @Override
     public String vratiNazivTabele() {
@@ -95,6 +97,11 @@ public class Licenca implements OpstiDomenskiObjekat{
     @Override
     public String vratiVrednostZaIzmenu() {
         return "zvanjeInstruktora='"+zvanjeInstruktora+"',nazivLicence='"+nazivLicence+"'";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

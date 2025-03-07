@@ -103,6 +103,11 @@ public class Skijas implements OpstiDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "ime='"+ime+"',prezime='"+prezime+"',brojTelefona='"+brojTelefona+"',nivoSkijanja="+nivoSkijanja.getIdNivoSkijanja();
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

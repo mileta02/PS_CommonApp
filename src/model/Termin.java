@@ -146,5 +146,10 @@ public class Termin implements OpstiDomenskiObjekat {
     public String vratiVrednostZaIzmenu() {
         return "ukupanIznos="+ukupanIznos+",vremeOd='"+vremeOd+"',vremeDo='"+vremeDo+"',brojSati="+brojSati+",maxBrojSkijasa="+maxBrojSkijasa+",datum='"+datum+"',tip="+tip.getIdTip()+",instruktor="+instruktor.getIdInstruktor();
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

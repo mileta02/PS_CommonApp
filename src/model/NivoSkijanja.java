@@ -83,5 +83,10 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
                 return "nazivNivoa='"+nazivNivoa+"'";
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

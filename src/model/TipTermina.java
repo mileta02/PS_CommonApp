@@ -95,6 +95,11 @@ public class TipTermina implements OpstiDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "cenaSata="+cenaSata+",nazivTipa='"+nazivTipa+"'";
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     
