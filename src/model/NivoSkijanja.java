@@ -86,7 +86,7 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "nazivNivoa like '"+nazivNivoa+"%'";
     }
     
 }
