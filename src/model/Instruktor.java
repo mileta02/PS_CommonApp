@@ -143,7 +143,16 @@ public class Instruktor implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        return "ime like '"+ime+"%' AND prezime like '"+prezime+"%';";
+        StringBuilder sb = new StringBuilder("1=1");
+        
+        if(!ime.isEmpty()){
+            sb.append(" AND ime like '"+ime+"%'");
+        }
+        if(!prezime.isEmpty()){
+            sb.append(" AND prezime like '"+prezime+"%'");
+        }
+        
+        return sb.toString();
     }
     
     

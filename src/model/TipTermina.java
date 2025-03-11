@@ -17,7 +17,10 @@ public class TipTermina implements OpstiDomenskiObjekat{
     private int idTip;
     private double cenaSata;
     private String nazivTipa;
-
+    private double cenaOd;
+    private double cenaDo;
+    
+    
     public TipTermina() {
     }
 
@@ -50,6 +53,12 @@ public class TipTermina implements OpstiDomenskiObjekat{
     public void setNazivTipa(String nazivTipa) {
         this.nazivTipa = nazivTipa;
     }
+    
+    public void filter(double cenaOd, double cenaDo){
+        this.cenaDo=cenaDo;
+        this.cenaOd=cenaOd;
+    }
+    
 
     @Override
     public String vratiNazivTabele() {
@@ -98,7 +107,25 @@ public class TipTermina implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder uslov = new StringBuilder("1=1 AND "); 
+        boolean previous = false;
+    if (cenaOd>-1) {
+        uslov.append("cenaSata >= ").append(cenaOd);
+        previous=true;
+    }
+    if (cenaDo>-1) {
+        if(previous)
+            uslov.append(" AND ");
+        uslov.append("cenaSata <= ").append(cenaDo);
+        previous=true;
+    }
+    if (nazivTipa != null && !nazivTipa.isEmpty()) {
+        if(previous)
+            uslov.append(" AND ");
+        uslov.append("nazivTipa LIKE '").append(nazivTipa).append("%'");
+    }
+
+    return uslov.toString();
     }
     
     
