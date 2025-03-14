@@ -101,7 +101,15 @@ public class Licenca implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder("1=1");
+        if(!nazivLicence.isEmpty()){
+            sb.append(" AND nazivLicence LIKE '"+nazivLicence+"%'");
+        }
+        if(!zvanjeInstruktora.isEmpty()){
+            sb.append(" AND zvanjeInstruktora LIKE '"+zvanjeInstruktora+"%'");
+        }
+        
+        return sb.toString();
     }
     
     

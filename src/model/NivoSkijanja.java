@@ -41,12 +41,21 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     }
 
     @Override
+    public String toString() {
+        return nazivNivoa;
+    }
+        
+    
+    
+    @Override
     public String vratiNazivTabele() {
         
         return "nivoskijanja";
 
 
     }
+    
+    
 
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
@@ -76,7 +85,11 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int idNivoSkijanja = rs.getInt("nivoskijanja.idNivoSkijanja");
+        String nazivNivoa = rs.getString("nivoskijanja.nazivNivoa");
+        NivoSkijanja ns = new  NivoSkijanja(idNivoSkijanja, nazivNivoa);
+        System.out.println(ns);
+        return ns;
     }
 
     @Override

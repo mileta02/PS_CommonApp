@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,13 +71,28 @@ public class Skijas implements OpstiDomenskiObjekat{
     }
 
     @Override
+    public String toString() {
+        return idSkijas+" "+ime+" "+prezime;
+    }
+    
+    
+
+    @Override
     public String vratiNazivTabele() {
         return "skijas";
     }
 
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<OpstiDomenskiObjekat> list = new ArrayList<>();
+        while(rs.next()){
+            String ime = rs.getString("ime");
+            String prezime = rs.getString("prezime");
+            String brojTelefona = rs.getString("brojTelefona");
+            int id = rs.getInt("idSkijas");
+            Skijas s = new Skijas(idSkijas, ime, prezime, brojTelefona, nivoSkijanja);
+        }
+        return list;
     }
 
     @Override
@@ -96,7 +112,11 @@ public class Skijas implements OpstiDomenskiObjekat{
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            String ime = rs.getString("ime");
+            String prezime = rs.getString("prezime");
+            String brojTelefona = rs.getString("brojTelefona");
+            int id = rs.getInt("idSkijas");            
+            return new Skijas(id, ime, prezime, brojTelefona, nivoSkijanja);
     }
 
     @Override
@@ -106,7 +126,16 @@ public class Skijas implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb  = new StringBuilder("1=1");
+        
+        if(!ime.isEmpty())
+            sb.append(" AND ime like '"+ime+"%'");
+        if(!prezime.isEmpty())
+            sb.append(" AND prezime like '"+prezime+"%'");
+        if(nivoSkijanja!=null)
+            sb.append(" AND nazivNivoa like '"+nivoSkijanja.getNazivNivoa()+"%'");
+        
+        return sb.toString();
     }
     
     
