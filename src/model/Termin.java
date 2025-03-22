@@ -6,8 +6,9 @@ package model;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
+import java.sql.Date;
 
 /**
  *
@@ -15,9 +16,9 @@ import java.util.List;
  */
 public class Termin implements OpstiDomenskiObjekat {
     private int idTermin;
-    private LocalDate vremeOd;
-    private LocalDate vremeDo;
-    private Date datum;
+    private LocalTime vremeOd;
+    private LocalTime vremeDo;
+    private LocalDate datum;
     private int maxBrojSkijasa;
     private double ukupanIznos;
     private int brojSati;
@@ -27,7 +28,7 @@ public class Termin implements OpstiDomenskiObjekat {
     public Termin() {
     }
 
-    public Termin(int idTermin, LocalDate vremeOd, LocalDate vremeDo, Date datum, int maxBrojSkijasa, double ukupanIznos, int brojSati, TipTermina tipTermina, Instruktor instruktor) {
+    public Termin(int idTermin, LocalTime vremeOd, LocalTime vremeDo, LocalDate datum, int maxBrojSkijasa, double ukupanIznos, int brojSati, TipTermina tipTermina, Instruktor instruktor) {
         this.idTermin = idTermin;
         this.vremeOd = vremeOd;
         this.vremeDo = vremeDo;
@@ -47,27 +48,27 @@ public class Termin implements OpstiDomenskiObjekat {
         this.idTermin = idTermin;
     }
 
-    public LocalDate getVremeOd() {
+    public LocalTime getVremeOd() {
         return vremeOd;
     }
 
-    public void setVremeOd(LocalDate vremeOd) {
+    public void setVremeOd(LocalTime vremeOd) {
         this.vremeOd = vremeOd;
     }
 
-    public LocalDate getVremeDo() {
+    public LocalTime getVremeDo() {
         return vremeDo;
     }
 
-    public void setVremeDo(LocalDate vremeDo) {
+    public void setVremeDo(LocalTime vremeDo) {
         this.vremeDo = vremeDo;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 
@@ -139,8 +140,19 @@ public class Termin implements OpstiDomenskiObjekat {
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        int idTermin = rs.getInt("termin.idTermin");
+        LocalTime vremeOd = rs.getTime("vremeOd").toLocalTime();
+        LocalTime vremeDo = rs.getTime("vremeDo").toLocalTime();
+        LocalDate datum = rs.getDate("datum").toLocalDate(); 
+        int maxBrojSkijasa = rs.getInt("maxBrojSkijasa");
+        double ukupanIznos = rs.getDouble("ukupanIznos");
+        int brojSati = rs.getInt("brojSati");
+        
+        
+        Termin t = new Termin(idTermin, vremeOd, vremeDo, datum, maxBrojSkijasa, ukupanIznos, brojSati, tip, instruktor);
+        
+        return t;
+    }   
 
     @Override
     public String vratiVrednostZaIzmenu() {
@@ -149,7 +161,21 @@ public class Termin implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        StringBuilder sb = new StringBuilder("1=1");
+        if(instruktor!=null)
+            sb.append(" AND instruktor.idInstruktor="+instruktor.getIdInstruktor());
+        
+        if(tip!=null)
+            sb.append(" AND tiptermina.idTip="+tip.getIdTip());
+        
+        if(maxBrojSkijasa>0)
+            sb.append(" AND termin.maxBrojSkijasa="+maxBrojSkijasa);
+        
+        if (datum != null) 
+             sb.append(" AND termin.datum >= CURDATE()");
+//sb.append(" AND termin.datum = '").append(Date.valueOf(datum)).append("'");
+
+        return sb.toString();
     }
     
 }

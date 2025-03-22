@@ -7,6 +7,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -91,7 +92,19 @@ public class Instruktor implements OpstiDomenskiObjekat {
     public String toString() {        
         return ime + " " + prezime;      
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; 
+        if (obj == null || getClass() != obj.getClass()) return false; 
+        Instruktor that = (Instruktor) obj; 
 
+        return Objects.equals(this.korisnickoIme, that.korisnickoIme) &&
+            Objects.equals(this.kontakt, that.kontakt) &&
+            Objects.equals(this.ime, that.ime) &&
+            Objects.equals(this.prezime, that.prezime);
+    }
+    
     @Override
     public String vratiNazivTabele() {
         
@@ -114,7 +127,7 @@ public class Instruktor implements OpstiDomenskiObjekat {
         }
         return lista;
     }
-
+    
     @Override
     public String vratiKoloneZaUbacivanje() {
         return "(ime,prezime,kontakt,korisnickoIme,sifra)";
@@ -133,7 +146,14 @@ public class Instruktor implements OpstiDomenskiObjekat {
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         int idInstruktor = rs.getInt("instruktor.idInstruktor");
+            String ime = rs.getString("instruktor.ime");
+            String prezime = rs.getString("instruktor.prezime");
+            String kontakt = rs.getString("instruktor.kontakt");
+            String korisnickoIme = rs.getString("instruktor.korisnickoIme");
+            String sifra = rs.getString("instruktor.sifra");
+            Instruktor i = new Instruktor(idInstruktor, ime, prezime, kontakt, korisnickoIme, sifra);
+            return i;
     }
 
     @Override

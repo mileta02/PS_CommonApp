@@ -5,7 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -13,24 +13,24 @@ import java.util.List;
  * @author milan
  */
 public class InstruktorLicenca implements OpstiDomenskiObjekat{
-    private Date datumSticanja;
+    private LocalDate datumSticanja;
     private Instruktor instruktor;
     private Licenca licenca;
 
     public InstruktorLicenca() {
     }
 
-    public InstruktorLicenca(Date datumSticanja, Instruktor instruktor, Licenca licenca) {
+    public InstruktorLicenca(LocalDate datumSticanja, Instruktor instruktor, Licenca licenca) {
         this.datumSticanja = datumSticanja;
         this.instruktor = instruktor;
         this.licenca = licenca;
     }
 
-    public Date getDatumSticanja() {
+    public LocalDate getDatumSticanja() {
         return datumSticanja;
     }
 
-    public void setDatumSticanja(Date datumSticanja) {
+    public void setDatumSticanja(LocalDate datumSticanja) {
         this.datumSticanja = datumSticanja;
     }
 

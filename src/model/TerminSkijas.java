@@ -5,7 +5,7 @@
 package model;
 
 import java.sql.ResultSet;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,12 +15,12 @@ import java.util.List;
 public class TerminSkijas implements OpstiDomenskiObjekat{
     private Skijas skijas;
     private Termin termin;
-    private Date datumPrijave;
+    private LocalDate datumPrijave;
 
     public TerminSkijas() {
     }
 
-    public TerminSkijas(Skijas skijas, Termin termin, Date datumPrijave) {
+    public TerminSkijas(Skijas skijas, Termin termin, LocalDate datumPrijave) {
         this.skijas = skijas;
         this.termin = termin;
         this.datumPrijave = datumPrijave;
@@ -42,11 +42,11 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
         this.termin = termin;
     }
 
-    public Date getDatumPrijave() {
+    public LocalDate getDatumPrijave() {
         return datumPrijave;
     }
 
-    public void setDatumPrijave(Date datumPrijave) {
+    public void setDatumPrijave(LocalDate datumPrijave) {
         this.datumPrijave = datumPrijave;
     }
 

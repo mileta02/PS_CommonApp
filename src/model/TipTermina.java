@@ -7,6 +7,7 @@ package model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -58,8 +59,27 @@ public class TipTermina implements OpstiDomenskiObjekat{
         this.cenaDo=cenaDo;
         this.cenaOd=cenaOd;
     }
-    
 
+    @Override
+    public String toString() {
+        return nazivTipa;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj)
+            return true;
+        if(obj==null || getClass()!=obj.getClass()) 
+            return false;
+        
+        TipTermina that = (TipTermina) obj;
+        return Objects.equals(this.getNazivTipa(), that.getNazivTipa()) &&
+                Objects.equals(this.getCenaSata(), that.getCenaSata());
+    }
+    
+    
+    
+    
     @Override
     public String vratiNazivTabele() {
         return "tiptermina";
@@ -96,8 +116,11 @@ public class TipTermina implements OpstiDomenskiObjekat{
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-      throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
+         int idTipTermina = rs.getInt("tiptermina.idTip");
+            double cenaSata = rs.getDouble("tiptermina.cenaSata");
+            String nazivTipa = rs.getString("tiptermina.nazivTipa");
+            TipTermina tt = new TipTermina(idTipTermina, cenaSata, nazivTipa);
+            return tt;
     }
 
     @Override
