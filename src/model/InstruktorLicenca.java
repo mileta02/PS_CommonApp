@@ -92,6 +92,11 @@ public class InstruktorLicenca implements OpstiDomenskiObjekat{
     public String vratiUslovNadjiSlogove() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "instruktorlicenca.instruktor="+instruktor.getIdInstruktor()+" AND instruktorlicenca.licenca="+licenca.getIdLicenca();
+    }
     
     
 }

@@ -150,6 +150,11 @@ public class TipTermina implements OpstiDomenskiObjekat{
 
     return uslov.toString();
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "tiptermina.nazivTipa='"+nazivTipa+"' AND tiptermina.cenaSata="+cenaSata;
+    }
     
     
     

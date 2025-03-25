@@ -174,6 +174,11 @@ public class Instruktor implements OpstiDomenskiObjekat {
         
         return sb.toString();
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "instruktor.korisnickoIme='"+korisnickoIme+"'";
+    }
     
     
     

@@ -22,6 +22,7 @@ public interface OpstiDomenskiObjekat extends Serializable{
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception;
     public String vratiVrednostZaIzmenu();
     public String vratiUslovNadjiSlogove();
+    public String vratiUslovDaPostoji();
 
 }
 

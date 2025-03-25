@@ -92,5 +92,10 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
     public String vratiUslovNadjiSlogove() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "terminskijas.termin="+termin.getIdTermin()+" AND terminskijas.skijas="+skijas.getIdSkijas();
+    }
     
 }

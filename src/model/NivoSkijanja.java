@@ -101,5 +101,10 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     public String vratiUslovNadjiSlogove() {
         return "nazivNivoa like '"+nazivNivoa+"%'";
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "nivoskijanja.nazivNivoa='"+nazivNivoa+"'";
+    }
     
 }

@@ -177,5 +177,15 @@ public class Termin implements OpstiDomenskiObjekat {
 
         return sb.toString();
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+         return "termin.datum='"+datum+"' AND termin.instruktor ="+instruktor.getIdInstruktor()+
+                 " AND (" +
+           "('"+vremeOd+"'>= vremeOd AND '"+vremeOd+"'<vremeDo) OR " +
+           "('"+vremeDo+"'> vremeOd AND '"+vremeDo+"' <= vremeDo) OR " +
+           "('"+vremeOd+"'<= vremeOd AND '"+vremeDo+"' >=vremeDo)" +
+           ")";
+    }
     
 }

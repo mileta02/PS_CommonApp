@@ -137,6 +137,11 @@ public class Skijas implements OpstiDomenskiObjekat{
         
         return sb.toString();
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "skijas.ime='"+ime+"' AND skijas.prezime='"+prezime+"' AND skijas.brojTelefona='"+brojTelefona+"'";
+    }
     
     
 }

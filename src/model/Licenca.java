@@ -111,6 +111,11 @@ public class Licenca implements OpstiDomenskiObjekat{
         
         return sb.toString();
     }
+
+    @Override
+    public String vratiUslovDaPostoji() {
+        return "licenca.nazivLicence='"+nazivLicence+"' AND licenca.zvanjeInstruktora='"+zvanjeInstruktora+"'";
+    }
     
     
     
