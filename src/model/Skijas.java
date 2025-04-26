@@ -74,6 +74,22 @@ public class Skijas implements OpstiDomenskiObjekat{
     public String toString() {
         return idSkijas+" "+ime+" "+prezime;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Skijas other = (Skijas) obj;
+        return this.idSkijas == other.idSkijas;
+    }
     
     
 
@@ -125,22 +141,31 @@ public class Skijas implements OpstiDomenskiObjekat{
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
+    public String vratiFilter(List<Object> parametri) {
         StringBuilder sb  = new StringBuilder("1=1");
-        
-        if(!ime.isEmpty())
-            sb.append(" AND ime like '"+ime+"%'");
-        if(!prezime.isEmpty())
-            sb.append(" AND prezime like '"+prezime+"%'");
-        if(nivoSkijanja!=null)
-            sb.append(" AND nazivNivoa like '"+nivoSkijanja.getNazivNivoa()+"%'");
-        
+        if(!ime.isEmpty()){
+            sb.append(" AND ime like ?");
+            parametri.add(ime+"%");
+        }
+        if(!prezime.isEmpty()){
+            sb.append(" AND prezime like ?");
+            parametri.add(prezime+"%");
+        }
+        if(nivoSkijanja!=null){
+            sb.append(" AND nazivNivoa like ?");
+            parametri.add(nivoSkijanja.getNazivNivoa());
+        }
         return sb.toString();
     }
 
     @Override
     public String vratiUslovDaPostoji() {
         return "skijas.ime='"+ime+"' AND skijas.prezime='"+prezime+"' AND skijas.brojTelefona='"+brojTelefona+"'";
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "skijas.idSkijas!="+idSkijas;
     }
     
     

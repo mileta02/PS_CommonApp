@@ -90,8 +90,17 @@ public class Licenca implements OpstiDomenskiObjekat{
     }
 
     @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "licenca.idLicenca!="+idLicenca;
+    }
+    @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int idLicence = rs.getInt("licenca.idLicenca");
+        String zvanjeInstruktora = rs.getString("licenca.zvanjeInstruktora");
+        String nazivLicence = rs.getString("licenca.nazivLicence");
+        Licenca l = new Licenca(idLicence, zvanjeInstruktora, nazivLicence);
+        
+        return l;
     }
 
     @Override
@@ -100,13 +109,15 @@ public class Licenca implements OpstiDomenskiObjekat{
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
+    public String vratiFilter(List<Object> parametri) {
         StringBuilder sb = new StringBuilder("1=1");
         if(!nazivLicence.isEmpty()){
-            sb.append(" AND nazivLicence LIKE '"+nazivLicence+"%'");
+            sb.append(" AND nazivLicence LIKE ?");
+            parametri.add(nazivLicence+"%");
         }
         if(!zvanjeInstruktora.isEmpty()){
-            sb.append(" AND zvanjeInstruktora LIKE '"+zvanjeInstruktora+"%'");
+            sb.append(" AND zvanjeInstruktora LIKE ?");
+            parametri.add(zvanjeInstruktora+"%");
         }
         
         return sb.toString();

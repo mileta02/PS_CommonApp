@@ -95,14 +95,11 @@ public class Instruktor implements OpstiDomenskiObjekat {
     
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true; 
-        if (obj == null || getClass() != obj.getClass()) return false; 
-        Instruktor that = (Instruktor) obj; 
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        return Objects.equals(this.korisnickoIme, that.korisnickoIme) &&
-            Objects.equals(this.kontakt, that.kontakt) &&
-            Objects.equals(this.ime, that.ime) &&
-            Objects.equals(this.prezime, that.prezime);
+        Instruktor other = (Instruktor) obj;
+        return idInstruktor == other.idInstruktor;
     }
     
     @Override
@@ -145,6 +142,10 @@ public class Instruktor implements OpstiDomenskiObjekat {
     }
 
     @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "instruktor.idInstruktor!="+idInstruktor;
+    }
+    @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
          int idInstruktor = rs.getInt("instruktor.idInstruktor");
             String ime = rs.getString("instruktor.ime");
@@ -162,14 +163,16 @@ public class Instruktor implements OpstiDomenskiObjekat {
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
+    public String vratiFilter(List<Object> parametri) {
         StringBuilder sb = new StringBuilder("1=1");
         
         if(!ime.isEmpty()){
-            sb.append(" AND ime like '"+ime+"%'");
+            sb.append(" AND ime like ?");
+            parametri.add(ime+"%");
         }
         if(!prezime.isEmpty()){
-            sb.append(" AND prezime like '"+prezime+"%'");
+            sb.append(" AND prezime like ?");
+            parametri.add(prezime+"%");
         }
         
         return sb.toString();

@@ -113,6 +113,11 @@ public class TipTermina implements OpstiDomenskiObjekat{
     public String vratiPrimarniKljuc() {
         return "tiptermina.idTip="+idTip;
     }
+    
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "tiptermina.idTip!="+idTip;
+    }
 
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
@@ -129,26 +134,22 @@ public class TipTermina implements OpstiDomenskiObjekat{
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
-        StringBuilder uslov = new StringBuilder("1=1 AND "); 
-        boolean previous = false;
+    public String vratiFilter(List<Object> parametri) {
+        StringBuilder sb = new StringBuilder("1=1 "); 
     if (cenaOd>-1) {
-        uslov.append("cenaSata >= ").append(cenaOd);
-        previous=true;
+        sb.append(" AND cenaSata >= ?");
+        parametri.add(cenaOd);
     }
     if (cenaDo>-1) {
-        if(previous)
-            uslov.append(" AND ");
-        uslov.append("cenaSata <= ").append(cenaDo);
-        previous=true;
+        sb.append(" AND cenaSata <= ?");
+        parametri.add(cenaDo);
     }
     if (nazivTipa != null && !nazivTipa.isEmpty()) {
-        if(previous)
-            uslov.append(" AND ");
-        uslov.append("nazivTipa LIKE '").append(nazivTipa).append("%'");
+        sb.append(" AND nazivTipa LIKE ?");
+        parametri.add(nazivTipa+"%");
     }
 
-    return uslov.toString();
+    return sb.toString();
     }
 
     @Override

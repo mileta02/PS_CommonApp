@@ -117,6 +117,24 @@ public class Termin implements OpstiDomenskiObjekat {
         return "termin";
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Termin other = (Termin) obj;
+        return this.idTermin == other.idTermin;
+    }
+
+    
+    
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -136,6 +154,11 @@ public class Termin implements OpstiDomenskiObjekat {
     @Override
     public String vratiPrimarniKljuc() {
         return "termin.idTermin="+idTermin;
+    }
+    
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "termin.idTermin!="+idTermin;
     }
 
     @Override
@@ -160,21 +183,23 @@ public class Termin implements OpstiDomenskiObjekat {
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
+    public String vratiFilter(List<Object> parametri) {
         StringBuilder sb = new StringBuilder("1=1");
-        if(instruktor!=null)
-            sb.append(" AND instruktor.idInstruktor="+instruktor.getIdInstruktor());
-        
-        if(tip!=null)
-            sb.append(" AND tiptermina.idTip="+tip.getIdTip());
-        
-        if(maxBrojSkijasa>0)
-            sb.append(" AND termin.maxBrojSkijasa="+maxBrojSkijasa);
-        
-        if (datum != null) 
+        if(instruktor!=null){
+            sb.append(" AND instruktor.idInstruktor=?");
+            parametri.add(instruktor.getIdInstruktor());
+        }
+        if(tip!=null) {
+            sb.append(" AND tiptermina.idTip=?");
+            parametri.add(tip.getIdTip());
+        }
+        if(maxBrojSkijasa>0){
+            sb.append(" AND termin.maxBrojSkijasa=?");
+            parametri.add(maxBrojSkijasa);
+        }
+        if (datum != null) {
              sb.append(" AND termin.datum >= CURDATE()");
-//sb.append(" AND termin.datum = '").append(Date.valueOf(datum)).append("'");
-
+        }
         return sb.toString();
     }
 

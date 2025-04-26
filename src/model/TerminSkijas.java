@@ -6,6 +6,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,13 +52,31 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
     }
 
     @Override
+    public String toString() {
+        return "TerminSkijas{" + "skijas=" + skijas.getIdSkijas() + ", termin=" + termin.getIdTermin() + '}';
+    }
+
+    @Override
     public String vratiNazivTabele() {
         return "terminskijas";
     }
 
     @Override
     public List<OpstiDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<OpstiDomenskiObjekat> list = new ArrayList<>();
+        while(rs.next()){
+            int termin = rs.getInt("termin");
+            int skijas = rs.getInt("skijas");
+            Termin t = new Termin();
+            t.setIdTermin(termin);
+            Skijas s = new Skijas();
+            s.setIdSkijas(skijas);
+            TerminSkijas ts = new TerminSkijas();
+            ts.setSkijas(s);
+            ts.setTermin(t);
+            list.add(ts);
+        }
+        return list;
     }
 
     @Override
@@ -89,13 +108,18 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
+    public String vratiFilter(List<Object> parametri) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public String vratiUslovDaPostoji() {
         return "terminskijas.termin="+termin.getIdTermin()+" AND terminskijas.skijas="+skijas.getIdSkijas();
+    }
+
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

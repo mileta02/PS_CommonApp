@@ -44,6 +44,27 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     public String toString() {
         return nazivNivoa;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NivoSkijanja other = (NivoSkijanja) obj;
+        return this.idNivoSkijanja == other.idNivoSkijanja;
+    }
         
     
     
@@ -82,7 +103,11 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     public String vratiPrimarniKljuc() {
         return "nivoskijanja.idNivoSkijanja="+idNivoSkijanja;
     }
-
+    
+    @Override
+    public String vratiRazlicitPrimarniKljuc() {
+        return "nivoskijanja.idNivoSkijanja!="+idNivoSkijanja;
+    }
     @Override
     public OpstiDomenskiObjekat vratiObjekatIzRs(ResultSet rs) throws Exception {
         int idNivoSkijanja = rs.getInt("nivoskijanja.idNivoSkijanja");
@@ -98,8 +123,13 @@ public class NivoSkijanja implements OpstiDomenskiObjekat{
     }
 
     @Override
-    public String vratiUslovNadjiSlogove() {
-        return "nazivNivoa like '"+nazivNivoa+"%'";
+    public String vratiFilter(List<Object> parametri) {
+        StringBuilder sb = new StringBuilder("1=1");
+        if(!nazivNivoa.isEmpty()){
+            sb.append(" AND nazivNivoa LIKE ?");
+            parametri.add(nazivNivoa+"%");
+        }
+        return sb.toString();
     }
 
     @Override
