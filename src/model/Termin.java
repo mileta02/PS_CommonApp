@@ -28,7 +28,8 @@ public class Termin implements OpstiDomenskiObjekat {
     public Termin() {
     }
 
-    public Termin(int idTermin, LocalTime vremeOd, LocalTime vremeDo, LocalDate datum, int maxBrojSkijasa, double ukupanIznos, int brojSati, TipTermina tipTermina, Instruktor instruktor) {
+    public Termin(int idTermin, LocalTime vremeOd, LocalTime vremeDo, LocalDate datum, 
+            int maxBrojSkijasa, double ukupanIznos, int brojSati, TipTermina tipTermina, Instruktor instruktor) {
         this.idTermin = idTermin;
         this.vremeOd = vremeOd;
         this.vremeDo = vremeDo;

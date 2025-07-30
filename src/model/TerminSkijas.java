@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -121,5 +122,19 @@ public class TerminSkijas implements OpstiDomenskiObjekat{
     public String vratiRazlicitPrimarniKljuc() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TerminSkijas that = (TerminSkijas) o;
+        return termin.getIdTermin() == that.termin.getIdTermin() && skijas.getIdSkijas() == that.skijas.getIdSkijas();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(termin.getIdTermin(), skijas.getIdSkijas());
+}
     
 }
